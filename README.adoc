@@ -1,0 +1,3 @@
+== Servlet 4 PushBuilder Demo
+
+It is a simple demo app to try new PushBuilder interface.
