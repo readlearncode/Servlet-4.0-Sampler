@@ -1,3 +1,94 @@
-== Servlet 4 PushBuilder Demo
+// First look at HTTP/2 Server Push API in Java Servlet 4.0 Specification
 
-It is a simple demo app to try new PushBuilder interface.
+Servlet is one of the most important specifications in the Java EE ecosystem. It is used on millions of applications and hundreds of Web frameworks. Because the Java Servlet specification is highly tied to the HTTP protocol, it is updated following HTTP protocol changes.
+
+HTTP 2 comes after the widely used HTTP 1.1 protocol and its new features bring much more performance to the Web. For example, the HTTP/2 Server Push feature gives a way to push Web resources from server to client. In that way, server applications are able to send content(s) at the beginning of the initial requests instead of waiting for clients' requests. It brings an efficient way to transfer resources in HTTP 2 enabled Web applications.
+
+The `PushBuilder` interface is designed for the HTTP/2 Server Push feature in the https://www.jcp.org/en/jsr/detail?id=369[JSR 369 - Java Servlet 4.0 Specification]. It looks like below;
+
+.javax.servlet.http.PushBuilder
+[source,java]
+----
+public interface PushBuilder {
+
+    public PushBuilder method(String method);
+    public PushBuilder queryString(String queryString);
+    public PushBuilder sessionId(String sessionId);
+    public PushBuilder setHeader(String name, String value);
+    public PushBuilder addHeader(String name, String value);
+    public PushBuilder removeHeader(String name);
+    public PushBuilder path(String path);
+    public void push();
+    public String getMethod();
+    public String getQueryString();
+    public String getSessionId();
+    public Set getHeaderNames();
+    public String getHeader(String name);
+    public String getPath();
+}
+----
+
+For example, you can push a resource in a Servlet class like below;
+
+[source,java]
+----
+@WebServlet(value = {"/http2"})
+public class Http2Servlet extends HttpServlet {
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+
+        PushBuilder pushBuilder = req.newPushBuilder(); <1>
+        pushBuilder
+                .path("images/kodedu-logo.png")
+                .addHeader("content-type", "image/png")
+                .push(); <2>
+
+        try(PrintWriter respWriter = resp.getWriter();){
+            respWriter.write("<html>" +
+                    "<img src='images/kodedu-logo.png'>" + <3>
+                    "</html>");
+        }
+
+    }
+}
+----
+<1> Returns a new `PushBuilder` instance if HTTP/2 enabled or `null` if it is not enabled/supported.
+<2> Will push kodedu-logo.png to client
+<3> `<img` element will not initiate a request for the image
+
+Above, When you do a *GET* request on this Servlet, HTML content and pushed image will be accessible on the browser almost at the same time. So, `<img src='..'..` would not initiate a new request for the resource because it had already been sent to the client.
+
+If you want to try this feature;
+
+. Download JDK-8u131+ http://www.oracle.com/technetwork/java/javase/downloads/index-jsp-138363.html, previous versions will not work.
+
+. Download the latest Glassfish build http://download.oracle.com/glassfish/5.0/nightly/latest-glassfish.zip
+
+. Clone my simple app and build it
++
+[source,bash]
+----
+git clone https://github.com/rahmanusta/servlet4-push
+cd servlet4-push
+mvn clean install -DskipTests=true
+----
++
+
+. Deploy the app to the Glassfish
++
+[source,bash]
+----
+cd target
+// asadmin create-domain domain1
+asadmin start-domain domain1
+asadmin deploy Servlet4Push.war
+----
++
+. Open the URL https://localhost:8181/Servlet4Push/http2 and watch the network traffic.
+
+image::https://en.kodedu.com/wp-content/uploads/2017/04/http2-servlet-push-api.png[]
+
+If you want to look into the spec documentation, you can find it here http://download.oracle.com/otndocs/jcp/servlet-4-pr-spec/index.html (See 3.8 HTTP/2 Server Push)
+
+Hope to see you again.
