@@ -19,12 +19,15 @@ public class Http2Servlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         PushBuilder pushBuilder = req.newPushBuilder();
-        pushBuilder
-                .path("images/kodedu-logo.png")
-                .addHeader("content-type", "image/png")
-                .push();
+        if (pushBuilder != null) {
+            pushBuilder
+                    .path("images/kodedu-logo.png")
+                    .addHeader("content-type", "image/png")
+                    .push();
+        }
 
-        try(PrintWriter respWriter = resp.getWriter();){
+
+        try (PrintWriter respWriter = resp.getWriter();) {
             respWriter.write("<html>" +
                     "<img src='images/kodedu-logo.png'>" +
                     "</html>");
