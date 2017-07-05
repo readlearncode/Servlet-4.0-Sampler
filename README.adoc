@@ -98,9 +98,15 @@ docker run -it --rm -d -p 8181:8181 rahmanusta/servlet4-push
 
 Here is the Dockerfile that just uses the official Glassfish Docker image and moves the Servlet4Push.war to Glassfish's autodeploy folder. After container run, it will deploy the demo app in just seconds!
 
+.Dockerfile
 [source,bash]
 ----
-include::Dockerfile[]
+FROM oracle/glassfish:nightly-web
+MAINTAINER Rahman Usta<rahmanusta@kodedu.com>
+COPY ./target/Servlet4Push.war /glassfish5/glassfish/domains/domain1/autodeploy
+EXPOSE 8080:8080
+EXPOSE 8181:8181
+EXPOSE 4848:4848
 ----
 
 If you want to look into the spec documentation, you can find it here http://download.oracle.com/otndocs/jcp/servlet-4-pr-spec/index.html (See 3.8 HTTP/2 Server Push)
