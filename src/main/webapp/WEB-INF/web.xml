@@ -20,7 +20,7 @@
 
     <filter>
         <filter-name>PushBuilderFilter</filter-name>
-        <filter-class>com.readlearncode.servlet4.PushBuilderFilter</filter-class>
+        <filter-class>com.readlearncode.servlet4.pushbuilder.PushBuilderFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -34,6 +34,7 @@
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>

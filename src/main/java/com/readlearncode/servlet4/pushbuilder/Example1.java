@@ -1,4 +1,4 @@
-package com.readlearncode.servlet4;
+package com.readlearncode.servlet4.pushbuilder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,7 +1,8 @@
-package com.readlearncode.servlet4;
+package com.readlearncode.servlet4.pushbuilder;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
@@ -20,11 +21,11 @@ public class PushBuilderFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//        ((HttpServletRequest)request).newPushBuilder()
-//                .path("images/ThumbsUpDuke.jpeg")
-//                .setHeader("content-type", "image/jpeg")
-//                .setHeader("cache-control", "public")
-//                .push();
+        ((HttpServletRequest)request).newPushBuilder()
+                .path("images/ThumbsUpDuke.jpeg")
+                .setHeader("content-type", "image/jpeg")
+                .setHeader("cache-control", "public")
+                .push();
         chain.doFilter(request, response);
     }
 

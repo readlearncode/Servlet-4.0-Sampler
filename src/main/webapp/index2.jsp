@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>JSP and Server Push</title>
+    <title>JSP with inline ServerPush Example</title>
 </head>
 <body>
+<h2>JSP with inline ServerPush Example</h2>
 
 <% request.newPushBuilder()
         .path("images/ThumbsUpDuke.jpeg")
