@@ -7,7 +7,7 @@
 
 <% request.newPushBuilder()
         .path("images/ThumbsUpDuke.jpeg")
-        .setHeader("content-type", "image/png")
+        .setHeader("content-type", "image/jpeg")
         .setHeader("cache-control", "public")
         .push();%>
 

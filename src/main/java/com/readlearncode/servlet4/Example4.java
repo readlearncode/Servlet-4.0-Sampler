@@ -27,7 +27,7 @@ public class Example4 extends HttpServlet {
         executorService.execute(() ->
                 req.newPushBuilder()
                         .path("images/ThumbsUpDuke.jpeg")
-                        .setHeader("content-type", "image/png")
+                        .setHeader("content-type", "image/jpeg")
                         .push()
         );
 

@@ -25,7 +25,7 @@ public class Example1 extends HttpServlet {
         if (pushBuilder != null) {
             pushBuilder
                     .path("images/ThumbsUpDuke.jpeg")
-                    .setHeader("content-type", "image/png")
+                    .setHeader("content-type", "image/jpeg")
                     .setHeader("cache-control", "public")
                     .push();
         }
