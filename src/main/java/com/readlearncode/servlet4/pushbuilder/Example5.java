@@ -14,8 +14,8 @@ import java.io.IOException;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@WebServlet(value = {"/example1"})
-public class Example1 extends HttpServlet {
+@WebServlet(value = {"/example5"})
+public class Example5 extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -23,13 +23,15 @@ public class Example1 extends HttpServlet {
         PushBuilder pushBuilder = request.newPushBuilder();
         if (pushBuilder != null) {
             pushBuilder
-                    .path("images/coffee-cup.jpg")
+                    .queryString("image=coffee-cup")
+                    .path("imageServlet")
                     .setHeader("content-type", "image/jpeg")
-                    .setHeader("cache-control", "public")
                     .push();
         }
 
+
         getServletContext().getRequestDispatcher("/coffee-cup.jsp").forward(request, response);
+
 
 //        try (PrintWriter printWriter = response.getWriter()) {
 //            printWriter.write("<html><img src='images/coffee-cup.jpg'></html>");

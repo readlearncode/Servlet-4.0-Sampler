@@ -18,14 +18,24 @@
     </security-constraint>
 
 
+    <!--<filter>-->
+        <!--<filter-name>PushBuilderFilter</filter-name>-->
+        <!--<filter-class>com.readlearncode.servlet4.pushbuilder.PushBuilderFilter</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>PushBuilderFilter</filter-name>-->
+        <!--<url-pattern>*.jsp</url-pattern>-->
+    <!--</filter-mapping> -->
+
     <filter>
-        <filter-name>PushBuilderFilter</filter-name>
-        <filter-class>com.readlearncode.servlet4.pushbuilder.PushBuilderFilter</filter-class>
+        <filter-name>PushCacheFilter</filter-name>
+        <filter-class>com.readlearncode.servlet4.pushbuilder.PushCacheFilter</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>PushBuilderFilter</filter-name>
-        <url-pattern>*.jsp</url-pattern>
+        <filter-name>PushCacheFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
 

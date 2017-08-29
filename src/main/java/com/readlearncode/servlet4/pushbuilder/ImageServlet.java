@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Source code github.com/readlearncode
@@ -14,18 +13,24 @@ import java.io.PrintWriter;
  * @author Alex Theedom www.readlearncode.com
  * @version 1.0
  */
-@WebServlet("/simplestexample")
-public class SimplestExample extends HttpServlet {
+@WebServlet("/imageServlet")
+public class ImageServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.newPushBuilder()
-                .path("images/coffee-cup.jpg")
-                .push();
+        String queryString = request.getQueryString();
 
-        try (PrintWriter printWriter = response.getWriter()) {
-            printWriter.write("<html><img src='images/coffee-cup.jpg'></html>");
+        String token = queryString.split("=")[1];
+
+        if (token.equals("coffee-cup")) {
+            getServletContext().getRequestDispatcher("/images/coffee-cup.jpg").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/images/ThumbsUpDuke.jpeg").forward(request, response);
+
         }
+
+
     }
+
 }
