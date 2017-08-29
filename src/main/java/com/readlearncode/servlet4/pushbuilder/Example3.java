@@ -18,9 +18,9 @@ import java.io.PrintWriter;
 public class Example3 extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        try (PrintWriter respWriter = resp.getWriter()) {
+        try (PrintWriter respWriter = response.getWriter()) {
 
             respWriter.write("<html>");
             for (int x = 0; x < 20; x++) {

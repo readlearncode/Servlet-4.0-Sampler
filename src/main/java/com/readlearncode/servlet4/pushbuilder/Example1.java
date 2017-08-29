@@ -19,9 +19,9 @@ import java.io.PrintWriter;
 public class Example1 extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        PushBuilder pushBuilder = req.newPushBuilder();
+        PushBuilder pushBuilder = request.newPushBuilder();
         if (pushBuilder != null) {
             pushBuilder
                     .path("images/ThumbsUpDuke.jpeg")
@@ -30,7 +30,7 @@ public class Example1 extends HttpServlet {
                     .push();
         }
 
-        try (PrintWriter respWriter = resp.getWriter()) {
+        try (PrintWriter respWriter = response.getWriter()) {
             respWriter.write("<html>" +
                     "<img src='images/ThumbsUpDuke.jpeg'>" +
                     "<br/>DONE!" +

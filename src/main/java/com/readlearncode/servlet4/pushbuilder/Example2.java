@@ -19,9 +19,9 @@ import java.io.PrintWriter;
 public class Example2 extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        PushBuilder pushBuilder = req.newPushBuilder();
+        PushBuilder pushBuilder = request.newPushBuilder();
         if (pushBuilder != null) {
             for (int x = 0; x < 20; x++) {
                 for (int y = 0; y < 20; y++) {
@@ -47,7 +47,7 @@ public class Example2 extends HttpServlet {
         page.append("</html>");
         System.out.println(page.toString());
 
-        try (PrintWriter respWriter = resp.getWriter()) {
+        try (PrintWriter respWriter = response.getWriter()) {
             respWriter.write(page.toString());
         }
 

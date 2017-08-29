@@ -20,12 +20,12 @@ import java.util.concurrent.Executors;
 public class Example4 extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         ExecutorService executorService = Executors.newSingleThreadExecutor();
 
         executorService.execute(() ->
-                req.newPushBuilder()
+                request.newPushBuilder()
                         .path("images/ThumbsUpDuke.jpeg")
                         .setHeader("content-type", "image/jpeg")
                         .push()
@@ -38,7 +38,7 @@ public class Example4 extends HttpServlet {
             e.printStackTrace();
         }
 
-        try (PrintWriter respWriter = resp.getWriter()) {
+        try (PrintWriter respWriter = response.getWriter()) {
             respWriter.write("<html>" +
                     "<img src='images/ThumbsUpDuke.jpeg'>" +
                     "</html>");
