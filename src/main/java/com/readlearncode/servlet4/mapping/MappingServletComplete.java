@@ -14,7 +14,7 @@ import java.io.IOException;
  * @version 1.0
  */
 //@WebServlet({"/path/*", "*.ext", "", "/", "/exact"})
-public class MappingServlet extends HttpServlet {
+public class MappingServletComplete extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 

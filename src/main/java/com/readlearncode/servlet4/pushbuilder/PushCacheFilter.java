@@ -2,6 +2,7 @@ package com.readlearncode.servlet4.pushbuilder;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -17,14 +18,9 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0
  */
 @WebFilter("/PushCacheFilter")
-public class PushCacheFilter implements Filter {
+public class PushCacheFilter extends HttpFilter {
 
     private Map<String, Set<String>> resourceCache = new ConcurrentHashMap<>();
-
-    @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
-
-    }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -53,8 +49,4 @@ public class PushCacheFilter implements Filter {
         chain.doFilter(request, response);
     }
 
-    @Override
-    public void destroy() {
-
-    }
 }

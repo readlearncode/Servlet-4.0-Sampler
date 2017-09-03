@@ -23,7 +23,7 @@ public class Example1 extends HttpServlet {
         PushBuilder pushBuilder = request.newPushBuilder();
         if (pushBuilder != null) {
             pushBuilder
-                    .path("images/coffee-cup.jpg")
+                    .path("resources/images/coffee-cup.jpg")
                     .setHeader("content-type", "image/jpeg")
                     .setHeader("cache-control", "public")
                     .push();

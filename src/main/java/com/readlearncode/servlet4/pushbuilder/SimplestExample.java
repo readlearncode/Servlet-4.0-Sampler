@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Source code github.com/readlearncode
@@ -21,11 +20,10 @@ public class SimplestExample extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.newPushBuilder()
-                .path("images/coffee-cup.jpg")
+                .path("resources/images/coffee-cup.jpg")
                 .push();
 
-        try (PrintWriter printWriter = response.getWriter()) {
-            printWriter.write("<html><img src='images/coffee-cup.jpg'></html>");
-        }
+        getServletContext().getRequestDispatcher("/coffee-cup.jsp").forward(request, response);
+
     }
 }

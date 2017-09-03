@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Coffee-Cup</title>
+    <title>Servlet 4.0 ServerPush Example</title>
 </head>
 <body>
-<img src='images/coffee-cup.jpg'>
+<img src='resources/images/coffee-cup.jpg'>
 </body>
 </html>
