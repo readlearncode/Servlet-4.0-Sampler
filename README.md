@@ -1,4 +1,4 @@
-# Servlet-4.0-Sampler
+# Servlet 4.0 Examples
 Examples of ways to use the new Servlet 4.0 feature in Java EE 8
 
 The code repository contains three examples:
