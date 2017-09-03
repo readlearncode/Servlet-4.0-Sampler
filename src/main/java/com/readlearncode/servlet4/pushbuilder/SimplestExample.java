@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * A simple POC use of the Server Push feature.
+ *
  * Source code github.com/readlearncode
  *
  * @author Alex Theedom www.readlearncode.com

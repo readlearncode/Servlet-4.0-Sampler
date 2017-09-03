@@ -12,6 +12,8 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * A very simple and naive way to implement a push cache filter!!
+ *
  * Source code github.com/readlearncode
  *
  * @author Alex Theedom www.readlearncode.com
